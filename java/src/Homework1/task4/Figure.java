@@ -1,4 +1,6 @@
 package Homework1.task4;
 
-public class Figure {
+public abstract class Figure implements Movable{
+    abstract double getX();
+    abstract double getY();
 }

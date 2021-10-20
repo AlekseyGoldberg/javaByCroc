@@ -8,6 +8,10 @@ public class Annotation {
         this.signature = signature;
     }
 
+    public Figure getFigure() {return figure;}
+
+    public String getSignature() {return signature;}
+
     public String toString(){
         return figure+" <"+signature+">";
     }

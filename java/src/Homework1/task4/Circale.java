@@ -1,14 +1,26 @@
 package Homework1.task4;
 
 public class Circale extends Figure {
-    private double X;
-    private double Y;
-    private double R;
+    private int X;
+    private int Y;
+    private int R;
 
-    public Circale(double x, double y, double r) {
+    public Circale(int x, int y, int r) {
         X = x;
         Y = y;
         R = r;
+    }
+
+    public double getX() {
+        return X;
+    }
+
+    public double getY() {
+        return Y;
+    }
+
+    public double getR() {
+        return R;
     }
 
     public String toString() {
@@ -16,4 +28,9 @@ public class Circale extends Figure {
     }
 
 
+    @Override
+    public void move(int dx, int dy) {
+        X+=dx;
+        Y+=dy;
+    }
 }
