@@ -3,9 +3,10 @@ package Homework1.task7;
 public class Main {
     public static void main(String[] args) throws IllegalPositionException, IllegalMoveException {
         //Переменная, в которой описаны все возможные ходы коня буквой "Г", для тестирования программы
-        String[] mass = {"d1", "c3", "d1", "e3", "d1", "b2", "d1", "f2", "d1"};
+        //String[] mass = {"d1", "c3", "d1", "e3", "d1", "b2", "d1", "f2", "d1"};
 
-        //String[] mass = {"g8", "e7", "e6"};
+        //переменная, в которой описана неверная последовательность хода коня
+        String[] mass = {"g8", "e7", "e6"};
         parse(mass);
     }
 
