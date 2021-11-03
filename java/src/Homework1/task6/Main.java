@@ -11,6 +11,7 @@ public class Main {
                 "  \n" +
                 "  /* main method */\n" +
                 "  public static void main(String[] args/* we put command line arguments here*/) {\n" +
+                "String k=\"ddd//che /*dsgf*/\""+
                 "    // this line prints my first greeting to the screen\n" +
                 "    System.out.println(\"Hi!\"); // :)\n" +
                 "  }\n" +
@@ -24,11 +25,13 @@ public class Main {
     public static String removeJavaComments(String source) {
         StringBuilder newSource = new StringBuilder();
         String[] sourceMass = source.split("");
+        boolean k=true;
         for (int i = 0; i < sourceMass.length-1; i++) {
-            if (sourceMass[i].equals("/") && sourceMass[i + 1].equals("/")) {
+            if (sourceMass[i].equals("\""))k=!k;
+            if (sourceMass[i].equals("/") && sourceMass[i + 1].equals("/")&&k) {
                 i = deleteSingleComment(sourceMass, i);
             }
-            if (sourceMass[i].equals("/") && sourceMass[i + 1].equals("*")){
+            if (sourceMass[i].equals("/") && sourceMass[i + 1].equals("*")&&k){
                 i=deleteMultilineComment(sourceMass,i);
             }
             newSource.append(sourceMass[i]);
