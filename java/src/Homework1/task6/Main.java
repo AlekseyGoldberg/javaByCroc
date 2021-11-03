@@ -16,6 +16,7 @@ public class Main {
                 "  }\n" +
                 "} // the end\n" +
                 "// to be continued...\n";
+        System.out.println(source);
         String noComments = removeJavaComments(source);
         System.out.println(noComments);
     }
@@ -23,11 +24,33 @@ public class Main {
     public static String removeJavaComments(String source) {
         StringBuilder newSource = new StringBuilder();
         String[] sourceMass = source.split("");
-        for (int i = 0; i < sourceMass.length; i++) {
-            if (!(sourceMass[i].equals("/") || sourceMass[i].equals("*"))) {
-                newSource.append(sourceMass[i]);
+        for (int i = 0; i < sourceMass.length-1; i++) {
+            if (sourceMass[i].equals("/") && sourceMass[i + 1].equals("/")) {
+                i = deleteSingleComment(sourceMass, i);
             }
+            if (sourceMass[i].equals("/") && sourceMass[i + 1].equals("*")){
+                i=deleteMultilineComment(sourceMass,i);
+            }
+            newSource.append(sourceMass[i]);
         }
         return newSource.toString();
     }
+
+    public static int deleteSingleComment(String[] sourceMass, int i) {
+        for (; i < sourceMass.length; i++) {
+            if (sourceMass[i].equals("\n")) {
+                return i;
+            }
+        }
+        return 0;
+    }
+    public static int deleteMultilineComment(String[] sourceMass,int i){
+        for (;i<sourceMass.length-1;i++){
+            if (sourceMass[i].equals("*")&&sourceMass[i+1].equals("/")){
+                return i+2;
+            }
+        }
+        return 0;
+    }
+
 }
