@@ -12,8 +12,8 @@ public class main {
         int countWord = 0;
         boolean k = true;
         try {
-            file=new FileInputStream("/Users/alekseyzhizhin/Documents/GitHub/javaByCroc/java/src/Homework1/task8/input.txt");
-            //file = new FileInputStream(args[0]);
+            //file=new FileInputStream("/Users/alekseyzhizhin/Documents/GitHub/javaByCroc/java/src/Homework1/task8/input.txt");
+            file = new FileInputStream(args[0]);
             while ((b = file.read()) != -1) {
                 char symbol = (char) b;
 
