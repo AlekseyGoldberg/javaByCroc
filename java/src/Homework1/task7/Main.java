@@ -1,12 +1,18 @@
 package Homework1.task7;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) throws IllegalPositionException, IllegalMoveException {
         //Переменная, в которой описаны все возможные ходы коня буквой "Г", для тестирования программы
         //String[] mass = {"d1", "c3", "d1", "e3", "d1", "b2", "d1", "f2", "d1"};
 
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Введите последовательность ходов коня через пробел(Например: b1 c3 b1):");
+        String[] mass=scanner.nextLine().toLowerCase().split(" ");
+
         //переменная, в которой описана неверная последовательность хода коня
-        String[] mass = {"g8", "e7", "e6"};
+        //String[] mass = {"g8", "e7", "e6"};
         parse(mass);
     }
 
@@ -29,64 +35,25 @@ public class Main {
             }
         }
         //если исключение было обработано, то этот блок кода игнорируем, если исключение не было обработано, то выводим "ОК"
-        if (result != 1) {
+        if (result == 0) {
             System.out.println("OK");
         }
     }
 
+
+
     public static void moveHorse(ChessPossition chessPossition, String[] chessPossitionOnMotion) throws IllegalPositionException, IllegalMoveException {
-        //проверяем может ли конь ходить 1 раз влево, 2 раза вверх
-        if ((chessPossition.getX() - 1 == chessPossitionOnMotion[0].hashCode() - 97) &&
-                (chessPossition.getY() + 2) == Integer.parseInt(chessPossitionOnMotion[1]) - 1) {
+        if ((Math.abs((chessPossitionOnMotion[0].hashCode() - 97) - chessPossition.getX()) == 1)
+                && Math.abs((Integer.parseInt(chessPossitionOnMotion[1]) - 1) - chessPossition.getY()) == 2) {
             chessPossition.setX(chessPossitionOnMotion[0].hashCode() - 97);
             chessPossition.setY(Integer.parseInt(chessPossitionOnMotion[1]) - 1);
-        }
-        //проверяем может ли конь ходить 1 раз вправо, 2 раза вверх
-        else if ((chessPossition.getX() + 1 == chessPossitionOnMotion[0].hashCode() - 97) &&
-                (chessPossition.getY() + 2) == Integer.parseInt(chessPossitionOnMotion[1]) - 1) {
+        } else if ((Math.abs((chessPossitionOnMotion[0].hashCode() - 97) - chessPossition.getX()) == 2)
+                && (Math.abs((Integer.parseInt(chessPossitionOnMotion[1]) - 1) - chessPossition.getY())) == 1) {
             chessPossition.setX(chessPossitionOnMotion[0].hashCode() - 97);
             chessPossition.setY(Integer.parseInt(chessPossitionOnMotion[1]) - 1);
-        }
-        //проверяем может ли конь ходить 1 раз вправо, 2 раза вниз
-        else if ((chessPossition.getX() + 1 == chessPossitionOnMotion[0].hashCode() - 97) &&
-                (chessPossition.getY() - 2) == Integer.parseInt(chessPossitionOnMotion[1]) - 1) {
-            chessPossition.setX(chessPossitionOnMotion[0].hashCode() - 97);
-            chessPossition.setY(Integer.parseInt(chessPossitionOnMotion[1]) - 1);
-        }
-        //проверяем может ли конь ходить 1 раз влево, 2 раза вниз
-        else if ((chessPossition.getX() - 1 == chessPossitionOnMotion[0].hashCode() - 97) &&
-                (chessPossition.getY() - 2) == Integer.parseInt(chessPossitionOnMotion[1]) - 1) {
-            chessPossition.setX(chessPossitionOnMotion[0].hashCode() - 97);
-            chessPossition.setY(Integer.parseInt(chessPossitionOnMotion[1]) - 1);
-        }
-        //проверяем может ли конь ходить 2 раз влево, 1 раз вверх
-        else if ((chessPossition.getX() - 2 == chessPossitionOnMotion[0].hashCode() - 97) &&
-                (chessPossition.getY() + 1) == Integer.parseInt(chessPossitionOnMotion[1]) - 1) {
-            chessPossition.setX(chessPossitionOnMotion[0].hashCode() - 97);
-            chessPossition.setY(Integer.parseInt(chessPossitionOnMotion[1]) - 1);
-        }
-        //проверяем может ли конь ходить 2 раз влево, 1 раз вниз
-        else if ((chessPossition.getX() - 2 == chessPossitionOnMotion[0].hashCode() - 97) &&
-                (chessPossition.getY() - 1) == Integer.parseInt(chessPossitionOnMotion[1]) - 1) {
-            chessPossition.setX(chessPossitionOnMotion[0].hashCode() - 97);
-            chessPossition.setY(Integer.parseInt(chessPossitionOnMotion[1]) - 1);
-        }
-        //проверяем может ли конь ходить 2 раз вправо, 1 раз вниз
-        else if ((chessPossition.getX() + 2 == chessPossitionOnMotion[0].hashCode() - 97) &&
-                (chessPossition.getY() - 1) == Integer.parseInt(chessPossitionOnMotion[1]) - 1) {
-            chessPossition.setX(chessPossitionOnMotion[0].hashCode() - 97);
-            chessPossition.setY(Integer.parseInt(chessPossitionOnMotion[1]) - 1);
-        }
-        //проверяем может ли конь ходить 2 раз вправо, 1 раз вверх
-        else if ((chessPossition.getX() + 2 == chessPossitionOnMotion[0].hashCode() - 97) &&
-                (chessPossition.getY() + 1) == Integer.parseInt(chessPossitionOnMotion[1]) - 1) {
-            chessPossition.setX(chessPossitionOnMotion[0].hashCode() - 97);
-            chessPossition.setY(Integer.parseInt(chessPossitionOnMotion[1]) - 1);
-        }
-        //если конь не может ходить, выбрасываем исключение
+        }//если конь не может ходить, выбрасываем исключение
         else {
             throw new IllegalMoveException();
         }
-
     }
 }

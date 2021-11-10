@@ -1,9 +1,6 @@
 package Homework1.task8;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class main {
     public static void main(String[] args) {
@@ -16,13 +13,12 @@ public class main {
             file = new FileInputStream(args[0]);
             while ((b = file.read()) != -1) {
                 char symbol = (char) b;
-
-                if (symbol ==' '||symbol=='\n'){
-                    k=true;
-                }else {
-                    if (k==true){
+                if (symbol == ' ' || symbol == '\n'||symbol==','||symbol=='.'||symbol=='!'||symbol=='?'||symbol==':'||symbol==';') {
+                    k = true;
+                } else {
+                    if (k == true) {
                         countWord++;
-                        k=false;
+                        k = false;
                     }
 
                 }
