@@ -21,7 +21,6 @@ public class Lot {
                 this.name = name;
                 }
             }
-
     }
 
     public String getWinner() throws AuctionExeption {
