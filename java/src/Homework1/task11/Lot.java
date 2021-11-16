@@ -1,31 +1,34 @@
 package Homework1.task11;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Lot {
     private int cost;
     private String name;
-    private int time;
-    private static final Object lock = new Object();
+    Instant time;
 
-    public Lot(int cost) {
-        if (cost > this.cost) {
-            this.cost = cost;
-        }
-        this.time = 10;
+    public Lot(int cost,Instant time) {
+        this.cost = cost;
+        this.time = time;
     }
 
-    public void bet(int cost, String name) throws InterruptedException {
-        synchronized (lock) {
-            if (cost > this.cost&&time>0) {
+    public void bet(int cost, String name,Instant time) throws InterruptedException {
+        synchronized (new Object()) {
+            if (cost > this.cost && time.compareTo(this.time)<0 ) {
                 this.cost = cost;
                 this.name = name;
-                this.time=10;
             }
         }
     }
 
-    public String getWinner() {
+    public String getWinner() throws AuctionExeption {
+        if (name==null){return "Информация о торгах отсутствует";}
+        if (Instant.now().compareTo(this.time)<0){
+            throw new AuctionExeption();
+        }else {
         return name + " " + cost;
+        }
     }
 }
