@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Lot {
-    private int cost;
-    private String name;
+    private volatile int cost;
+    private volatile String name;
     Instant time;
 
     public Lot(int cost,Instant time) {
@@ -15,12 +15,13 @@ public class Lot {
     }
 
     public void bet(int cost, String name,Instant time) throws InterruptedException {
-        synchronized (new Object()) {
             if (cost > this.cost && time.compareTo(this.time)<0 ) {
+                synchronized (new Object()) {
                 this.cost = cost;
                 this.name = name;
+                }
             }
-        }
+
     }
 
     public String getWinner() throws AuctionExeption {
