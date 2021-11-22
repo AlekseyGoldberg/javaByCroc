@@ -52,13 +52,13 @@ public class main {
         //рейтинг фильмов
         int[] ratingMass = new int[films.size()];
         //перебор по всей истории просмотров, подсчет рейтинга фильмов, которые пользователь еще не смотрел
-        Set<Integer>set=new HashSet<>(Arrays.asList(listFilms.toArray(new Integer[0])));
-        Integer [] masss=set.toArray(new Integer[0]);
+        Set<Integer>setOfSortedViews=new HashSet<>(Arrays.asList(listFilms.toArray(new Integer[0])));
+        Integer [] arrayOfSortedViews=setOfSortedViews.toArray(new Integer[0]);
         for (int i=0;i<historyFilms.size();i++){
             for (int j=0;j<historyFilms.get(i).size();j++){
-                for (int k=0;k<masss.length;k++){
-                    if (masss[k]==historyFilms.get(i).get(j)){
-                        ratingMass[listFilms.get(k)-1]++;
+                for (int k=0;k<arrayOfSortedViews.length;k++){
+                    if (arrayOfSortedViews[k]==historyFilms.get(i).get(j)){
+                        ratingMass[arrayOfSortedViews[k]-1]++;
                     }
                 }
             }
