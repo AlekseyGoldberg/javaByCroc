@@ -23,7 +23,7 @@ public class main {
             Human human = new Human(massOnString[0], Integer.parseInt(massOnString[1]));
             for (int i = 0; i < ageLimits.length; i++) {
                 if (human.getAge() >= ageLimits[ageLimits.length - 1]) {
-                    groups.get(7).add(human);
+                    groups.get(ageLimits.length).add(human);
                     break;
                 }
                 if (human.getAge() <= ageLimits[i]) {
