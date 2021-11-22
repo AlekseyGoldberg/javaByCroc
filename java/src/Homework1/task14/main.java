@@ -90,8 +90,8 @@ public class main {
             String[] mass = line.split(",");
             films.add(mass[1]);
             line = reader.readLine();
-
         }
+        reader.close();
     }
 
     public static void readHistory(List<List<Integer>> historyFilms) throws IOException {
@@ -109,6 +109,7 @@ public class main {
             k++;
             line = reader.readLine();
         }
+        reader.close();
     }
 
     public static void printFilms(List<String> films) {
